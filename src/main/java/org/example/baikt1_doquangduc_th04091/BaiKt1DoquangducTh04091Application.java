@@ -8,6 +8,7 @@ public class BaiKt1DoquangducTh04091Application {
 
     public static void main(String[] args) {
         SpringApplication.run(BaiKt1DoquangducTh04091Application.class, args);
+        System.out.println("running...");
     }
 
 }
