@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List nhân viên</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="mb-4">List nhân viên</h2>
+
+    <a th:href="@{/employees/showNewEmployeeForm}" class="btn btn-primary mb-3">+ Thêm nhân viên</a>
+
+    <table class="table table-bordered table-hover bg-white">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Lương</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e : ${employees}">
+            <td th:text="${e.id}"></td>
+            <td th:text="${e.name}"></td>
+            <td th:text="${e.email}"></td>
+            <td th:text="${#numbers.formatDecimal(e.salary, 0, 'COMMA', 0, 'POINT')} + ' VND'"></td>
+            <td>
+                <a th:href="@{'/employees/edit/' + ${e.id}}" class="btn btn-warning btn-sm">Sửa</a>
+<!--                <a th:href="@{'/employees/delete/' + ${e.id}}" class="btn btn-danger btn-sm"-->
+<!--                   onclick="return confirm('Bạn có chắc muốn xóa nhân viên này không?')">Xóa</a>-->
+                <a th:href="@{'/employees/delete/' + ${e.id}}" class="btn btn-danger btn-sm">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
